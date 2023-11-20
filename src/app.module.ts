@@ -12,6 +12,7 @@ import * as path from 'path';
 import { HttpExceptionFilter } from './middlewares/filters/http-exception.filter';
 import { TransformInterceptor } from './middlewares/interceptors/transform.interceptor';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
+import { QuestionnaireModule } from './res/questionnaire/questionnaire.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { LoggerMiddleware } from './middlewares/logger.middleware';
         synchronize: false,
       }),
     }),
+    QuestionnaireModule,
   ],
   controllers: [],
   providers: [

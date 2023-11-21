@@ -23,4 +23,13 @@ export class QuestionnaireService {
 
     return questionnaire;
   }
+
+  async getQuestionnaireListById(id: number): Promise<FindQuestionnaireDto[]> {
+    const questionnaire =
+      await this.questionnaireRepository.findQuestionnaireList({
+        id,
+      });
+
+    return questionnaire;
+  }
 }

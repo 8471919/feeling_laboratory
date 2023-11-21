@@ -1,5 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { AppModule } from 'src/app.module';
 
 describe('e2e AnswerQuestionnaire Test', () => {
   let app: INestApplication;
@@ -9,7 +10,7 @@ describe('e2e AnswerQuestionnaire Test', () => {
 
   beforeAll(async () => {
     testingModule = await Test.createTestingModule({
-      imports: [AnswerQuestionnaireModule],
+      imports: [AppModule],
     }).compile();
 
     app = testingModule.createNestApplication();

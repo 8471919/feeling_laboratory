@@ -29,7 +29,10 @@ import { QuestionnaireModule } from './res/questionnaire/questionnaire.module';
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_DATABASE'),
-        entities: [path.join(__dirname, '/entities/**/*.entity.{js, ts}')],
+        entities: [
+          path.join(__dirname, '/entities/**/*.entity.ts'),
+          path.join(__dirname, '/entities/**/*.entity.js'),
+        ],
         timezone: 'local',
         logging: true,
         synchronize: false,

@@ -1,6 +1,8 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { QuestionnaireModule } from 'src/res/questionnaire/questionnaire.module';
+import { AppModule } from 'src/app.module';
+import { CreateQuestionnaireDto } from 'src/dtos/questionnaire/create-questionnaire.dto';
+import * as request from 'supertest';
 
 describe('e2e Questionnaire Test', () => {
   let app: INestApplication;
@@ -10,7 +12,7 @@ describe('e2e Questionnaire Test', () => {
 
   beforeAll(async () => {
     testingModule = await Test.createTestingModule({
-      imports: [QuestionnaireModule],
+      imports: [AppModule],
     }).compile();
 
     app = testingModule.createNestApplication();
@@ -22,7 +24,19 @@ describe('e2e Questionnaire Test', () => {
   });
 
   describe('POST /api/questionnaire', () => {
-    test.todo('설문지가 정상적으로 생성되는지 검증');
+    test('설문지가 정상적으로 생성되는지 검증', async () => {
+      const questionnaireInfo: CreateQuestionnaireDto = {
+        author: 'michael',
+        title: 'This is Title',
+        startedAt: new Date(),
+      };
+
+      const res = await request(app.getHttpServer())
+        .post(baseUrl)
+        .send(questionnaireInfo);
+
+      expect(res.body.data).toHaveProperty('author');
+    });
   });
 
   describe('GET /api/questionnaire', () => {

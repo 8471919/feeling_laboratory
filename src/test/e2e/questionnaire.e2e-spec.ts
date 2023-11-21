@@ -2,6 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from 'src/app.module';
 import { CreateQuestionnaireDto } from 'src/dtos/questionnaire/create-questionnaire.dto';
+import { ERROR_MESSAGE } from 'src/utils/constants/error-message';
 import * as request from 'supertest';
 
 describe('e2e Questionnaire Test', () => {
@@ -47,6 +48,16 @@ describe('e2e Questionnaire Test', () => {
       const res = await request(app.getHttpServer()).get(`${baseUrl}/${id}`);
 
       expect(res.body.data[0]).toHaveProperty('author');
+    });
+
+    test('존재하지 않는 설문지를 가져오는 경우 검증', async () => {
+      const res = await request(app.getHttpServer()).get(
+        `${baseUrl}/2100000000`
+      );
+
+      expect(res.body.data).toStrictEqual(
+        ERROR_MESSAGE.NOT_FOUND_QUESTIONNAIRE
+      );
     });
   });
 

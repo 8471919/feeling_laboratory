@@ -5,6 +5,9 @@ import { AnswerQuestionEntity } from './answer-question.entity';
 
 @Entity('AnswerQuestionnaire')
 export class AnswerQuestionnaireEntity extends CommonIntPKEntity {
+  @Column('int', { unique: false, nullable: false, default: 0 })
+  totalScore: number;
+
   @Column('int', { unique: false, nullable: false })
   questionnaireId: number;
 

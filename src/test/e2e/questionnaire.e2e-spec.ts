@@ -7,6 +7,7 @@ import * as request from 'supertest';
 describe('e2e Questionnaire Test', () => {
   let app: INestApplication;
   let testingModule: TestingModule;
+  let id: number;
 
   const baseUrl = '/api/questionnaire';
 
@@ -35,12 +36,18 @@ describe('e2e Questionnaire Test', () => {
         .post(baseUrl)
         .send(questionnaireInfo);
 
+      id = res.body?.data?.id;
+
       expect(res.body.data).toHaveProperty('author');
     });
   });
 
   describe('GET /api/questionnaire', () => {
-    test.todo('설문지가 정상적으로 읽어지는지 검증');
+    test('설문지가 정상적으로 읽어지는지 검증', async () => {
+      const res = await request(app.getHttpServer()).get(`${baseUrl}/${id}`);
+
+      expect(res.body.data[0]).toHaveProperty('author');
+    });
   });
 
   describe('PUT /api/questionnaire', () => {

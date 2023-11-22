@@ -13,6 +13,7 @@ import { HttpExceptionFilter } from './middlewares/filters/http-exception.filter
 import { TransformInterceptor } from './middlewares/interceptors/transform.interceptor';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { QuestionnaireModule } from './res/questionnaire/questionnaire.module';
+import { QuestionModule } from './res/question/question.module';
 // import { UserModule } from './res/user/user.module';
 
 @Module({
@@ -40,6 +41,7 @@ import { QuestionnaireModule } from './res/questionnaire/questionnaire.module';
     }),
     // UserModule,
     QuestionnaireModule,
+    QuestionModule,
   ],
   controllers: [],
   providers: [

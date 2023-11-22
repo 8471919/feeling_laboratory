@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
@@ -48,5 +49,12 @@ export class QuestionController {
     );
 
     return isUpdated;
+  }
+
+  @Delete('/:id')
+  async removeQuestion(@Param('id', new ParseIntPipe()) questionId: number) {
+    const isDeleted = await this.questionService.removeQuestion(questionId);
+
+    return isDeleted;
   }
 }

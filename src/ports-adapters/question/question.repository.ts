@@ -58,4 +58,16 @@ export class QuestionRepository implements QuestionRepositoryOutboundPort {
 
     return true;
   }
+
+  async deleteQuestion(id: number): Promise<boolean> {
+    const question = await this.questionRepository.softDelete({
+      id,
+    });
+
+    if (question.affected !== 1) {
+      throw new BadRequestException(ERROR_MESSAGE.FAIL_TO_DELETE_QUESTION);
+    }
+
+    return true;
+  }
 }

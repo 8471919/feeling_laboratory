@@ -16,7 +16,7 @@ export class QuestionRepository implements QuestionRepositoryOutboundPort {
   async createQuestion(
     createQuestionDto: CreateQuestionDto
   ): Promise<FindQuestionDto> {
-    const question = await this.questionRepository.create(createQuestionDto);
+    const question = await this.questionRepository.save(createQuestionDto);
 
     return question;
   }

@@ -3,6 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from 'src/app.module';
 import { CreateQuestionDto } from 'src/dtos/question/create-question.dto';
 import { CreateQuestionnaireDto } from 'src/dtos/questionnaire/create-questionnaire.dto';
+import { ERROR_MESSAGE } from 'src/utils/constants/error-message';
 import * as request from 'supertest';
 
 describe('e2e Question Test', () => {
@@ -69,6 +70,14 @@ describe('e2e Question Test', () => {
       );
 
       expect(res.body.data.length).toBeGreaterThan(0);
+    });
+
+    test('존재하지 않는 설문지에 대해 요청했을 경우', async () => {
+      const res = await request(app.getHttpServer()).get(
+        `${baseUrl}/list?questionnaireId=2100000000`
+      );
+
+      expect(res.body.data).toStrictEqual(ERROR_MESSAGE.FAIL_TO_FIND_QUESTION);
     });
   });
 

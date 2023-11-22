@@ -1,4 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { CreateQuestionDto } from 'src/dtos/question/create-question.dto';
+import { FindQuestionDto } from 'src/dtos/question/find-question.dto';
 import {
   QUESTION_REPOSITORY_OUTBOUND_PORT,
   QuestionRepositoryOutboundPort,
@@ -10,4 +12,13 @@ export class QuestionService {
     @Inject(QUESTION_REPOSITORY_OUTBOUND_PORT)
     private readonly questionRepository: QuestionRepositoryOutboundPort
   ) {}
+
+  async createQuestion(
+    createQuestionDto: CreateQuestionDto
+  ): Promise<FindQuestionDto> {
+    const question =
+      await this.questionRepository.createQuestion(createQuestionDto);
+
+    return question;
+  }
 }

@@ -62,4 +62,16 @@ export class QuestionnaireRepository
 
     return true;
   }
+
+  async deleteQuestionnaire(id: number): Promise<boolean> {
+    const questionnaire = await this.questionnaireRepository.softDelete({
+      id,
+    });
+
+    if (questionnaire.affected !== 1) {
+      throw new BadRequestException(ERROR_MESSAGE.FAIL_TO_DELETE_QUESTIONNAIRE);
+    }
+
+    return true;
+  }
 }

@@ -45,4 +45,11 @@ export class QuestionnaireService {
 
     return isUpdated;
   }
+
+  async removeQuestionnaireById(id: number): Promise<boolean> {
+    const isDeleted =
+      await this.questionnaireRepository.deleteQuestionnaire(id);
+
+    return isDeleted;
+  }
 }

@@ -7,4 +7,8 @@ export const ERROR_MESSAGE = {
     code: 400,
     message: '설문지를 수정할 수 없습니다. 잘못된 값을 입력하셨습니다.',
   },
+  FAIL_TO_DELETE_QUESTIONNAIRE: {
+    code: 400,
+    message: '설문지를 삭제할 수 없습니다. 잘못된 값을 입력하셨습니다.',
+  },
 };

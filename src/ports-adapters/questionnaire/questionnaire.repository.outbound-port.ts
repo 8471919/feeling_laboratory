@@ -23,4 +23,6 @@ export interface QuestionnaireRepositoryOutboundPort {
     updateQuestionnaireDto: UpdateQuestionnaireDto,
     options: UpdateQuestionnaireOptionDto
   ): Promise<boolean>;
+
+  deleteQuestionnaire(id: number): Promise<boolean>;
 }

@@ -77,6 +77,10 @@ describe('e2e Questionnaire Test', () => {
   });
 
   describe('DELETE /api/questionnaire', () => {
-    test.todo('설문지가 정상적으로 삭제되는지 검증');
+    test('설문지가 정상적으로 삭제되는지 검증', async () => {
+      const res = await request(app.getHttpServer()).del(`${baseUrl}/${id}`);
+
+      expect(res.body.data).toBe(true);
+    });
   });
 });

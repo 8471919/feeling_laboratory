@@ -14,6 +14,7 @@ import { TransformInterceptor } from './middlewares/interceptors/transform.inter
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { QuestionnaireModule } from './res/questionnaire/questionnaire.module';
 import { QuestionModule } from './res/question/question.module';
+import { QuestionOptionModule } from './res/\bquestion-option/question-option.module';
 // import { UserModule } from './res/user/user.module';
 
 @Module({
@@ -42,6 +43,7 @@ import { QuestionModule } from './res/question/question.module';
     // UserModule,
     QuestionnaireModule,
     QuestionModule,
+    QuestionOptionModule,
   ],
   controllers: [],
   providers: [

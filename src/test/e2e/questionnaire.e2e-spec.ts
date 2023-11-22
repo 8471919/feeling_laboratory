@@ -2,6 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from 'src/app.module';
 import { CreateQuestionnaireDto } from 'src/dtos/questionnaire/create-questionnaire.dto';
+import { UpdateQuestionnaireDto } from 'src/dtos/questionnaire/update-questionnaire.dto';
 import { ERROR_MESSAGE } from 'src/utils/constants/error-message';
 import * as request from 'supertest';
 
@@ -62,7 +63,17 @@ describe('e2e Questionnaire Test', () => {
   });
 
   describe('PUT /api/questionnaire', () => {
-    test.todo('설문지가 정상적으로 수정되는지 검증');
+    test('설문지가 정상적으로 수정되는지 검증', async () => {
+      const questionnaire: UpdateQuestionnaireDto = {
+        title: 'updated Title',
+        startedAt: new Date(),
+      };
+      const res = await request(app.getHttpServer())
+        .put(`${baseUrl}/${id}`)
+        .send(questionnaire);
+
+      expect(res.body.data).toBe(true);
+    });
   });
 
   describe('DELETE /api/questionnaire', () => {

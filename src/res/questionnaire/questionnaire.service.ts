@@ -30,10 +30,6 @@ export class QuestionnaireService {
         id,
       });
 
-    if (questionnaireList.length > 1) {
-      throw new BadRequestException('잘못된 접근입니다.');
-    }
-
     return questionnaireList[0];
   }
 }

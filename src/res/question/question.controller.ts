@@ -1,4 +1,11 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  ParseIntPipe,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { QuestionService } from './question.service';
 import { CreateQuestionDto } from 'src/dtos/question/create-question.dto';
 import { FindQuestionDto } from 'src/dtos/question/find-question.dto';
@@ -14,5 +21,16 @@ export class QuestionController {
     const question = await this.questionService.createQuestion(body);
 
     return question;
+  }
+
+  @Get('/list')
+  async getQuestionList(
+    @Query('questionnaireId', new ParseIntPipe()) questionnaireId: number
+  ): Promise<FindQuestionDto[]> {
+    const questionList = await this.questionService.getQuestionList({
+      questionnaireId,
+    });
+
+    return questionList;
   }
 }

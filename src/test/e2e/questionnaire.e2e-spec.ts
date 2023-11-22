@@ -47,7 +47,7 @@ describe('e2e Questionnaire Test', () => {
     test('설문지가 정상적으로 읽어지는지 검증', async () => {
       const res = await request(app.getHttpServer()).get(`${baseUrl}/${id}`);
 
-      expect(res.body.data[0]).toHaveProperty('author');
+      expect(res.body.data).toHaveProperty('author');
     });
 
     test('존재하지 않는 설문지를 가져오는 경우 검증', async () => {

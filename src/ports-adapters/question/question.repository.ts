@@ -7,6 +7,10 @@ import { CreateQuestionDto } from 'src/dtos/question/create-question.dto';
 import { FindQuestionDto } from 'src/dtos/question/find-question.dto';
 import { FindQuestionOptionDto } from 'src/dtos/question/find-question-option.dto';
 import { ERROR_MESSAGE } from 'src/utils/constants/error-message';
+import {
+  UpdateQuestionDto,
+  UpdateQuestionOptionDto,
+} from 'src/dtos/question/update-question.dto';
 
 @Injectable()
 export class QuestionRepository implements QuestionRepositoryOutboundPort {
@@ -37,5 +41,21 @@ export class QuestionRepository implements QuestionRepositoryOutboundPort {
     }
 
     return questionList;
+  }
+
+  async updateQuestion(
+    updateQuestionDto: UpdateQuestionDto,
+    options: UpdateQuestionOptionDto
+  ): Promise<boolean> {
+    const question = await this.questionRepository.update(
+      options,
+      updateQuestionDto
+    );
+
+    if (question.affected !== 1) {
+      throw new BadRequestException(ERROR_MESSAGE.FAIL_TO_UPDATE_QUESTION);
+    }
+
+    return true;
   }
 }

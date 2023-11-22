@@ -14,6 +14,7 @@ describe('e2e QuestionOption Test', () => {
 
   let questionnaireId;
   let questionId;
+  let questionOptionId;
 
   beforeAll(async () => {
     testingModule = await Test.createTestingModule({
@@ -74,12 +75,20 @@ describe('e2e QuestionOption Test', () => {
         .post(baseUrl)
         .send(questionOptionInfo);
 
+      questionOptionId = res.body.data.id;
+
       expect(res.body.data.content).toStrictEqual(questionOptionInfo.content);
     });
   });
 
   describe('GET /api/question-option', () => {
-    test.todo('선택지가 정상적으로 읽어지는지 검증');
+    test('선택지가 정상적으로 읽어지는지 검증', async () => {
+      const res = await request(app.getHttpServer()).get(
+        `${baseUrl}/list?questionId=${questionId}`
+      );
+
+      expect(res.body.data.length).toBeGreaterThan(0);
+    });
   });
 
   describe('PUT /api/question-option', () => {

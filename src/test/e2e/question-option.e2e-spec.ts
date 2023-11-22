@@ -4,6 +4,7 @@ import { AppModule } from 'src/app.module';
 import { CreateQuestionOptionDto } from 'src/dtos/question-option/create-question-option.dto';
 import { CreateQuestionDto } from 'src/dtos/question/create-question.dto';
 import { CreateQuestionnaireDto } from 'src/dtos/questionnaire/create-questionnaire.dto';
+import { ERROR_MESSAGE } from 'src/utils/constants/error-message';
 import * as request from 'supertest';
 
 describe('e2e QuestionOption Test', () => {
@@ -88,6 +89,16 @@ describe('e2e QuestionOption Test', () => {
       );
 
       expect(res.body.data.length).toBeGreaterThan(0);
+    });
+
+    test('존재하지 않는 설문 문항에 대해 읽기 요청을 했을 경우', async () => {
+      const res = await request(app.getHttpServer()).get(
+        `${baseUrl}/list?questionId=2100000000`
+      );
+
+      expect(res.body.data).toStrictEqual(
+        ERROR_MESSAGE.FAIL_TO_FIND_QUESTION_OPTION
+      );
     });
   });
 

@@ -7,6 +7,10 @@ import { QuestionnaireEntity } from 'src/entities/questionnaire.entity';
 import { Repository } from 'typeorm';
 import { FindQuestionnaireOptionDto } from 'src/dtos/questionnaire/find-questionnaire-option.dto';
 import { ERROR_MESSAGE } from 'src/utils/constants/error-message';
+import {
+  UpdateQuestionnaireDto,
+  UpdateQuestionnaireOptionDto,
+} from 'src/dtos/questionnaire/update-questionnaire.dto';
 
 @Injectable()
 export class QuestionnaireRepository
@@ -41,5 +45,21 @@ export class QuestionnaireRepository
     }
 
     return questionnaireList;
+  }
+
+  async updateQuestionnaire(
+    updateQuestionnaireDto: UpdateQuestionnaireDto,
+    options: UpdateQuestionnaireOptionDto
+  ): Promise<boolean> {
+    const questionnaire = await this.questionnaireRepository.update(
+      options,
+      updateQuestionnaireDto
+    );
+
+    if (questionnaire.affected !== 1) {
+      throw new BadRequestException(ERROR_MESSAGE.FAIL_TO_UPDATE_QUESTIONNAIRE);
+    }
+
+    return true;
   }
 }

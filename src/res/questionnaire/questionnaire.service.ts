@@ -5,6 +5,7 @@ import {
 } from '../../ports-adapters/questionnaire/questionnaire.repository.outbound-port';
 import { CreateQuestionnaireDto } from 'src/dtos/questionnaire/create-questionnaire.dto';
 import { FindQuestionnaireDto } from 'src/dtos/questionnaire/find-questionnaire.dto';
+import { UpdateQuestionnaireDto } from 'src/dtos/questionnaire/update-questionnaire.dto';
 
 @Injectable()
 export class QuestionnaireService {
@@ -31,5 +32,17 @@ export class QuestionnaireService {
       });
 
     return questionnaireList[0];
+  }
+
+  async modifyQuestionnaireById(
+    updateQuestionnaireDto: UpdateQuestionnaireDto,
+    id: number
+  ): Promise<boolean> {
+    const isUpdated = await this.questionnaireRepository.updateQuestionnaire(
+      updateQuestionnaireDto,
+      { id }
+    );
+
+    return isUpdated;
   }
 }

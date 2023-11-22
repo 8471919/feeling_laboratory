@@ -98,6 +98,21 @@ describe('e2e Question Test', () => {
 
       expect(res.body.data).toBe(true);
     });
+
+    test('존재하지 않는 설문지에 대한 문항 수정을 요청하는 경우', async () => {
+      const questionInfo: UpdateQuestionDto = {
+        content: 'updated question',
+        order: 1,
+      };
+
+      const res = await request(app.getHttpServer())
+        .put(`${baseUrl}/2100000000`)
+        .send(questionInfo);
+
+      expect(res.body.data).toStrictEqual(
+        ERROR_MESSAGE.FAIL_TO_UPDATE_QUESTION
+      );
+    });
   });
 
   describe('DELETE /api/question', () => {

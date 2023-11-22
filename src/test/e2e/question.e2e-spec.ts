@@ -123,5 +123,15 @@ describe('e2e Question Test', () => {
 
       expect(res.body.data).toBe(true);
     });
+
+    test('존재하지 않는 설문지에 대한 문항 삭제를 요청하는 경우', async () => {
+      const res = await request(app.getHttpServer()).del(
+        `${baseUrl}/2100000000`
+      );
+
+      expect(res.body.data).toStrictEqual(
+        ERROR_MESSAGE.FAIL_TO_DELETE_QUESTION
+      );
+    });
   });
 });

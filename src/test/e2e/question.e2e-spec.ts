@@ -63,7 +63,13 @@ describe('e2e Question Test', () => {
   });
 
   describe('GET /api/question', () => {
-    test.todo('설문 문항이 정상적으로 읽어지는지 검증');
+    test('questionnaireId로 설문 문항 리스트가 정상적으로 읽어지는지 검증', async () => {
+      const res = await request(app.getHttpServer()).get(
+        `${baseUrl}/list?questionnaireId=${questionnaireId}`
+      );
+
+      expect(res.body.data.length).toBeGreaterThan(0);
+    });
   });
 
   describe('PUT /api/question', () => {

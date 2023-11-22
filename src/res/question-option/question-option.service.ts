@@ -23,4 +23,15 @@ export class QuestionOptionService {
 
     return questionOption;
   }
+
+  async getQuestionOptionList(
+    questionId: number
+  ): Promise<FindQuestionOptionEntityDto[]> {
+    const questionOptionList =
+      await this.questionOptionRepository.findQuestionOptionList({
+        questionId,
+      });
+
+    return questionOptionList;
+  }
 }

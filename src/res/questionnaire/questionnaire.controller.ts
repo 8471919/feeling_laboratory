@@ -5,6 +5,7 @@ import {
   Param,
   ParseIntPipe,
   Post,
+  Put,
 } from '@nestjs/common';
 import { QuestionnaireService } from './questionnaire.service';
 import { CreateQuestionnaireDto } from 'src/dtos/questionnaire/create-questionnaire.dto';
@@ -25,11 +26,11 @@ export class QuestionnaireController {
   }
 
   @Get('/:id')
-  async getQuestionnaireListById(
+  async getQuestionnaireById(
     @Param('id', new ParseIntPipe()) questionnaireId: number
-  ): Promise<FindQuestionnaireDto[]> {
+  ): Promise<FindQuestionnaireDto> {
     const questionnaire =
-      await this.questionnaireService.getQuestionnaireListById(questionnaireId);
+      await this.questionnaireService.getQuestionnaireById(questionnaireId);
 
     return questionnaire;
   }

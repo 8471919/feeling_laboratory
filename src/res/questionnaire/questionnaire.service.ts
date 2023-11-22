@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import {
   QUESTIONNAIRE_REPOSITORY_OUTBOUND_PORT,
   QuestionnaireRepositoryOutboundPort,
@@ -24,12 +24,16 @@ export class QuestionnaireService {
     return questionnaire;
   }
 
-  async getQuestionnaireListById(id: number): Promise<FindQuestionnaireDto[]> {
-    const questionnaire =
+  async getQuestionnaireById(id: number): Promise<FindQuestionnaireDto> {
+    const questionnaireList =
       await this.questionnaireRepository.findQuestionnaireList({
         id,
       });
 
-    return questionnaire;
+    if (questionnaireList.length > 1) {
+      throw new BadRequestException('잘못된 접근입니다.');
+    }
+
+    return questionnaireList[0];
   }
 }

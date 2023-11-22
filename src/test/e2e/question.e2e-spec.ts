@@ -116,6 +116,12 @@ describe('e2e Question Test', () => {
   });
 
   describe('DELETE /api/question', () => {
-    test.todo('설문 문항이 정상적으로 삭제되는지 검증');
+    test('설문 문항이 정상적으로 삭제되는지 검증', async () => {
+      const res = await request(app.getHttpServer()).del(
+        `${baseUrl}/${questionId}`
+      );
+
+      expect(res.body.data).toBe(true);
+    });
   });
 });

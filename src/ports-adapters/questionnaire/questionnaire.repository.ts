@@ -64,13 +64,22 @@ export class QuestionnaireRepository
   }
 
   async deleteQuestionnaire(id: number): Promise<boolean> {
-    const questionnaire = await this.questionnaireRepository.softDelete({
-      id,
+    const questionnaire = await this.questionnaireRepository.findOne({
+      where: {
+        id,
+      },
+      relations: {
+        questions: {
+          questionOptions: true,
+        },
+      },
     });
 
-    if (questionnaire.affected !== 1) {
+    if (!questionnaire) {
       throw new BadRequestException(ERROR_MESSAGE.FAIL_TO_DELETE_QUESTIONNAIRE);
     }
+
+    await this.questionnaireRepository.softRemove(questionnaire);
 
     return true;
   }

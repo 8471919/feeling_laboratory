@@ -3,7 +3,7 @@ import { QuestionOptionRepositoryOutboundPort } from './question-option.reposito
 import { InjectRepository } from '@nestjs/typeorm';
 import { QuestionOptionEntity } from 'src/entities/question-option.entity';
 import { Repository } from 'typeorm';
-import { CreateQuestionOptionDto } from 'src/dtos/question-option/create-question-option.dto';
+import { CreateQuestionOptionEntityDto } from 'src/dtos/question-option/create-question-option.dto';
 import { FindQuestionOptionEntityDto } from 'src/dtos/question-option/find-question-option.dto';
 import { FindQuestionOptionsOptionDto } from 'src/dtos/question-option/find-question-options-option.dto';
 import { ERROR_MESSAGE } from 'src/utils/constants/error-message';
@@ -22,7 +22,7 @@ export class QuestionOptionRepository
   ) {}
 
   async createQuestionOption(
-    createQuestionOptionDto: CreateQuestionOptionDto
+    createQuestionOptionDto: CreateQuestionOptionEntityDto
   ): Promise<FindQuestionOptionEntityDto> {
     const questionOption = await this.questionOptionRepository.save(
       createQuestionOptionDto

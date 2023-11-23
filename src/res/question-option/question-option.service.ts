@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CreateQuestionOptionDto } from 'src/dtos/question-option/create-question-option.dto';
+import { CreateQuestionOptionEntityDto } from 'src/dtos/question-option/create-question-option.dto';
 import { FindQuestionOptionEntityDto } from 'src/dtos/question-option/find-question-option.dto';
 import { UpdateQuestionOptionEntityDto } from 'src/dtos/question-option/update-question-option.dto';
 import {
@@ -15,7 +15,7 @@ export class QuestionOptionService {
   ) {}
 
   async createQuestionOption(
-    createQuestionOptionDto: CreateQuestionOptionDto
+    createQuestionOptionDto: CreateQuestionOptionEntityDto
   ): Promise<FindQuestionOptionEntityDto> {
     const questionOption =
       await this.questionOptionRepository.createQuestionOption(

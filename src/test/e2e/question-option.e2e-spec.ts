@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from 'src/app.module';
-import { CreateQuestionOptionDto } from 'src/dtos/question-option/create-question-option.dto';
+import { CreateQuestionOptionEntityDto } from 'src/dtos/question-option/create-question-option.dto';
 import { UpdateQuestionOptionEntityDto } from 'src/dtos/question-option/update-question-option.dto';
 import { CreateQuestionDto } from 'src/dtos/question/create-question.dto';
 import { CreateQuestionnaireDto } from 'src/dtos/questionnaire/create-questionnaire.dto';
@@ -66,7 +66,7 @@ describe('e2e QuestionOption Test', () => {
 
   describe('POST /api/question-option', () => {
     test('선택지가 정상적으로 생성되는지 검증', async () => {
-      const questionOptionInfo: CreateQuestionOptionDto = {
+      const questionOptionInfo: CreateQuestionOptionEntityDto = {
         content: 'question option content',
         order: 1,
         questionId,

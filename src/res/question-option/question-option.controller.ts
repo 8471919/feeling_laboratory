@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { QuestionOptionService } from './question-option.service';
 import { FindQuestionOptionEntityDto } from 'src/dtos/question-option/find-question-option.dto';
-import { CreateQuestionOptionDto } from 'src/dtos/question-option/create-question-option.dto';
+import { CreateQuestionOptionEntityDto } from 'src/dtos/question-option/create-question-option.dto';
 import { FindQuestionOptionsOptionDto } from 'src/dtos/question-option/find-question-options-option.dto';
 import { UpdateQuestionOptionEntityDto } from 'src/dtos/question-option/update-question-option.dto';
 
@@ -20,7 +20,7 @@ export class QuestionOptionController {
 
   @Post()
   async createQuestionOption(
-    @Body() body: CreateQuestionOptionDto
+    @Body() body: CreateQuestionOptionEntityDto
   ): Promise<FindQuestionOptionEntityDto> {
     const questionOption =
       await this.questionOptionService.createQuestionOption(body);

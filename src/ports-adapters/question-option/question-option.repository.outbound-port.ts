@@ -1,4 +1,4 @@
-import { CreateQuestionOptionDto } from 'src/dtos/question-option/create-question-option.dto';
+import { CreateQuestionOptionEntityDto } from 'src/dtos/question-option/create-question-option.dto';
 import { FindQuestionOptionEntityDto } from 'src/dtos/question-option/find-question-option.dto';
 import { FindQuestionOptionsOptionDto } from 'src/dtos/question-option/find-question-options-option.dto';
 import {
@@ -11,7 +11,7 @@ export const QUESTION_OPTION_REPOSITORY_OUTBOUND_PORT =
 
 export interface QuestionOptionRepositoryOutboundPort {
   createQuestionOption(
-    createQuestionOptionDto: CreateQuestionOptionDto
+    createQuestionOptionDto: CreateQuestionOptionEntityDto
   ): Promise<FindQuestionOptionEntityDto>;
 
   findQuestionOptionList(

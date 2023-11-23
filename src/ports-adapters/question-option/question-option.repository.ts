@@ -5,7 +5,7 @@ import { QuestionOptionEntity } from 'src/entities/question-option.entity';
 import { Repository } from 'typeorm';
 import { CreateQuestionOptionEntityDto } from 'src/dtos/question-option/create-question-option.dto';
 import { FindQuestionOptionEntityDto } from 'src/dtos/question-option/find-question-option.dto';
-import { FindQuestionOptionsOptionDto } from 'src/dtos/question-option/find-question-options-option.dto';
+import { FindQuestionOptionEntityOptionDto } from 'src/dtos/question-option/find-question-options-option.dto';
 import { ERROR_MESSAGE } from 'src/utils/constants/error-message';
 import {
   UpdateQuestionOptionEntityDto,
@@ -32,7 +32,7 @@ export class QuestionOptionRepository
   }
 
   async findQuestionOptionList(
-    options: FindQuestionOptionsOptionDto
+    options: FindQuestionOptionEntityOptionDto
   ): Promise<FindQuestionOptionEntityDto[]> {
     const questionOptionList = await this.questionOptionRepository.find({
       where: {

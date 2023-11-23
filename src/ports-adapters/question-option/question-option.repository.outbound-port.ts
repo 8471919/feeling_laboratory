@@ -1,6 +1,6 @@
 import { CreateQuestionOptionEntityDto } from 'src/dtos/question-option/create-question-option.dto';
 import { FindQuestionOptionEntityDto } from 'src/dtos/question-option/find-question-option.dto';
-import { FindQuestionOptionsOptionDto } from 'src/dtos/question-option/find-question-options-option.dto';
+import { FindQuestionOptionEntityOptionDto } from 'src/dtos/question-option/find-question-options-option.dto';
 import {
   UpdateQuestionOptionEntityDto,
   UpdateQuestionOptionEntityOptionDto,
@@ -15,7 +15,7 @@ export interface QuestionOptionRepositoryOutboundPort {
   ): Promise<FindQuestionOptionEntityDto>;
 
   findQuestionOptionList(
-    options: FindQuestionOptionsOptionDto
+    options: FindQuestionOptionEntityOptionDto
   ): Promise<FindQuestionOptionEntityDto[]>;
 
   updateQuestionOption(

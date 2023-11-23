@@ -15,6 +15,7 @@ import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { QuestionnaireModule } from './res/questionnaire/questionnaire.module';
 import { QuestionModule } from './res/question/question.module';
 import { QuestionOptionModule } from './res/\bquestion-option/question-option.module';
+import { AnswerQuestionnaireModule } from './res/answer-questionnaire/answer-questionnaire.module';
 // import { UserModule } from './res/user/user.module';
 
 @Module({
@@ -44,6 +45,7 @@ import { QuestionOptionModule } from './res/\bquestion-option/question-option.mo
     QuestionnaireModule,
     QuestionModule,
     QuestionOptionModule,
+    AnswerQuestionnaireModule,
   ],
   controllers: [],
   providers: [

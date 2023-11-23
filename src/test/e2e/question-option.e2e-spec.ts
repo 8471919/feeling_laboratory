@@ -2,6 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from 'src/app.module';
 import { CreateQuestionOptionDto } from 'src/dtos/question-option/create-question-option.dto';
+import { UpdateQuestionOptionEntityDto } from 'src/dtos/question-option/update-question-option.dto';
 import { CreateQuestionDto } from 'src/dtos/question/create-question.dto';
 import { CreateQuestionnaireDto } from 'src/dtos/questionnaire/create-questionnaire.dto';
 import { ERROR_MESSAGE } from 'src/utils/constants/error-message';
@@ -103,7 +104,19 @@ describe('e2e QuestionOption Test', () => {
   });
 
   describe('PUT /api/question-option', () => {
-    test.todo('선택지가 정상적으로 수정되는지 검증');
+    test('선택지가 정상적으로 수정되는지 검증', async () => {
+      const questionOptionInfo: UpdateQuestionOptionEntityDto = {
+        content: 'updated QuestionOption Content',
+        order: 1,
+        score: 3,
+      };
+
+      const res = await request(app.getHttpServer())
+        .put(`${baseUrl}/${questionOptionId}`)
+        .send(questionOptionInfo);
+
+      expect(res.body.data).toBe(true);
+    });
   });
 
   describe('DELETE /api/question-option', () => {

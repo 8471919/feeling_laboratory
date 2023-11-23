@@ -22,4 +22,6 @@ export interface QuestionOptionRepositoryOutboundPort {
     updateQuestionOptionDto: UpdateQuestionOptionEntityDto,
     options: UpdateQuestionOptionEntityOptionDto
   ): Promise<boolean>;
+
+  deleteQuestionOption(questionOptionId: string): Promise<boolean>;
 }

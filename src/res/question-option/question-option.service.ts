@@ -47,4 +47,13 @@ export class QuestionOptionService {
 
     return isUpdated;
   }
+
+  async removeQuestionOption(questionOptionId: string): Promise<boolean> {
+    const isDeleted =
+      await this.questionOptionRepository.deleteQuestionOption(
+        questionOptionId
+      );
+
+    return isDeleted;
+  }
 }

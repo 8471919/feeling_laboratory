@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
@@ -49,5 +50,15 @@ export class QuestionOptionController {
     );
 
     return isUpdated;
+  }
+
+  @Delete('/:id')
+  async removeQuestionOption(
+    @Param('id') questionOptionId: string
+  ): Promise<boolean> {
+    const isDeleted =
+      await this.questionOptionService.removeQuestionOption(questionOptionId);
+
+    return isDeleted;
   }
 }

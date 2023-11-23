@@ -31,4 +31,8 @@ export const ERROR_MESSAGE = {
     code: 400,
     message: '선택지를 수정할 수 없습니다. 잘못된 값을 입력하셨습니다.',
   },
+  FAIL_TO_DELETE_QUESTION_OPTION: {
+    code: 400,
+    message: '선택지를 삭제할 수 없습니다. 잘못된 값을 입력하셨습니다.',
+  },
 };

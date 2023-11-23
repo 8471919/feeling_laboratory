@@ -64,4 +64,18 @@ export class QuestionOptionRepository
 
     return true;
   }
+
+  async deleteQuestionOption(questionOptionId: string): Promise<boolean> {
+    const questionOption = await this.questionOptionRepository.softDelete({
+      id: questionOptionId,
+    });
+
+    if (questionOption.affected !== 1) {
+      throw new BadRequestException(
+        ERROR_MESSAGE.FAIL_TO_DELETE_QUESTION_OPTION
+      );
+    }
+
+    return true;
+  }
 }

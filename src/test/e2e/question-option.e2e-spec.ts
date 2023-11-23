@@ -136,6 +136,12 @@ describe('e2e QuestionOption Test', () => {
   });
 
   describe('DELETE /api/question-option', () => {
-    test.todo('선택지가 정상적으로 삭제되는지 검증');
+    test('선택지가 정상적으로 삭제되는지 검증', async () => {
+      const res = await request(app.getHttpServer()).del(
+        `${baseUrl}/${questionOptionId}`
+      );
+
+      expect(res.body.data).toBe(true);
+    });
   });
 });

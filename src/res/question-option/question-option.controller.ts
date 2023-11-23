@@ -2,14 +2,17 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   ParseIntPipe,
   Post,
+  Put,
   Query,
 } from '@nestjs/common';
 import { QuestionOptionService } from './question-option.service';
 import { FindQuestionOptionEntityDto } from 'src/dtos/question-option/find-question-option.dto';
 import { CreateQuestionOptionDto } from 'src/dtos/question-option/create-question-option.dto';
 import { FindQuestionOptionsOptionDto } from 'src/dtos/question-option/find-question-options-option.dto';
+import { UpdateQuestionOptionEntityDto } from 'src/dtos/question-option/update-question-option.dto';
 
 @Controller('/api/question-option')
 export class QuestionOptionController {
@@ -33,5 +36,18 @@ export class QuestionOptionController {
       await this.questionOptionService.getQuestionOptionList(questionId);
 
     return questionOptionList;
+  }
+
+  @Put('/:id')
+  async modifyQuestionOption(
+    @Body() body: UpdateQuestionOptionEntityDto,
+    @Param('id') questionOptionId: string
+  ): Promise<boolean> {
+    const isUpdated = await this.questionOptionService.modifyQuestionOption(
+      body,
+      questionOptionId
+    );
+
+    return isUpdated;
   }
 }

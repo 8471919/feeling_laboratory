@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateQuestionOptionDto } from 'src/dtos/question-option/create-question-option.dto';
 import { FindQuestionOptionEntityDto } from 'src/dtos/question-option/find-question-option.dto';
+import { UpdateQuestionOptionEntityDto } from 'src/dtos/question-option/update-question-option.dto';
 import {
   QUESTION_OPTION_REPOSITORY_OUTBOUND_PORT,
   QuestionOptionRepositoryOutboundPort,
@@ -33,5 +34,17 @@ export class QuestionOptionService {
       });
 
     return questionOptionList;
+  }
+
+  async modifyQuestionOption(
+    updateQuestionOptionDto: UpdateQuestionOptionEntityDto,
+    questionOptionId: string
+  ): Promise<boolean> {
+    const isUpdated = await this.questionOptionRepository.updateQuestionOption(
+      updateQuestionOptionDto,
+      { id: questionOptionId }
+    );
+
+    return isUpdated;
   }
 }

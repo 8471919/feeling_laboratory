@@ -7,6 +7,10 @@ import { CreateQuestionOptionDto } from 'src/dtos/question-option/create-questio
 import { FindQuestionOptionEntityDto } from 'src/dtos/question-option/find-question-option.dto';
 import { FindQuestionOptionsOptionDto } from 'src/dtos/question-option/find-question-options-option.dto';
 import { ERROR_MESSAGE } from 'src/utils/constants/error-message';
+import {
+  UpdateQuestionOptionEntityDto,
+  UpdateQuestionOptionEntityOptionDto,
+} from 'src/dtos/question-option/update-question-option.dto';
 
 @Injectable()
 export class QuestionOptionRepository
@@ -41,5 +45,23 @@ export class QuestionOptionRepository
     }
 
     return questionOptionList;
+  }
+
+  async updateQuestionOption(
+    updateQuestionOptionDto: UpdateQuestionOptionEntityDto,
+    options: UpdateQuestionOptionEntityOptionDto
+  ): Promise<boolean> {
+    const questionOption = await this.questionOptionRepository.update(
+      options,
+      updateQuestionOptionDto
+    );
+
+    if (questionOption.affected !== 1) {
+      throw new BadRequestException(
+        ERROR_MESSAGE.FAIL_TO_UPDATE_QUESTION_OPTION
+      );
+    }
+
+    return true;
   }
 }

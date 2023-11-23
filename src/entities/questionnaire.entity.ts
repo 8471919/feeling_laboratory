@@ -47,7 +47,9 @@ export class QuestionnaireEntity extends CommonIntPKEntity {
   // @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
   // user: UserEntity;
 
-  @OneToMany(() => QuestionEntity, (question) => question.questionnaire)
+  @OneToMany(() => QuestionEntity, (question) => question.questionnaire, {
+    cascade: true,
+  })
   questions: QuestionEntity[];
 
   @OneToMany(

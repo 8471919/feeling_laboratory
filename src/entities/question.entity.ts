@@ -29,7 +29,10 @@ export class QuestionEntity extends CommonIntPKEntity {
 
   @OneToMany(
     () => QuestionOptionEntity,
-    (questionOption) => questionOption.question
+    (questionOption) => questionOption.question,
+    {
+      cascade: true,
+    }
   )
   questionOptions: QuestionOptionEntity[];
 

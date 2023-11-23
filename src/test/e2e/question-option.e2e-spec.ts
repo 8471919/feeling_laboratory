@@ -143,5 +143,15 @@ describe('e2e QuestionOption Test', () => {
 
       expect(res.body.data).toBe(true);
     });
+
+    test('존재하지 않는 선택지에 대해 삭제 요청을 했을 경우', async () => {
+      const res = await request(app.getHttpServer()).del(
+        `${baseUrl}/2100000000`
+      );
+
+      expect(res.body.data).toStrictEqual(
+        ERROR_MESSAGE.FAIL_TO_DELETE_QUESTION_OPTION
+      );
+    });
   });
 });

@@ -110,8 +110,6 @@ describe('e2e AnswerQuestionnaire Test', () => {
         `${baseUrl}/${answerQuestionnaireId}`
       );
 
-      console.log(res.body.data);
-
       expect(res.body.data).toHaveProperty('questionnaireId');
     });
   });
@@ -121,6 +119,12 @@ describe('e2e AnswerQuestionnaire Test', () => {
   });
 
   describe('DELETE /api/answer-questionnaire', () => {
-    test.todo('답변 설문지가 정상적으로 삭제되는지 검증');
+    test('답변 설문지가 정상적으로 삭제되는지 검증', async () => {
+      const res = await request(app.getHttpServer()).del(
+        `${baseUrl}/${answerQuestionnaireId}`
+      );
+
+      expect(res.body.data).toBe(true);
+    });
   });
 });

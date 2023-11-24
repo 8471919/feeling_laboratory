@@ -5,6 +5,7 @@ import { CreateAnswerQuestionnaireDto } from 'src/dtos/answer-questionnaire/crea
 import { CreateQuestionOptionEntityDto } from 'src/dtos/question-option/create-question-option.dto';
 import { CreateQuestionDto } from 'src/dtos/question/create-question.dto';
 import { CreateQuestionnaireDto } from 'src/dtos/questionnaire/create-questionnaire.dto';
+import { ERROR_MESSAGE } from 'src/utils/constants/error-message';
 import * as request from 'supertest';
 
 describe('e2e AnswerQuestionnaire Test', () => {
@@ -125,6 +126,16 @@ describe('e2e AnswerQuestionnaire Test', () => {
       );
 
       expect(res.body.data).toBe(true);
+    });
+
+    test('존재하지 않는 답변 설문지에 대해 삭제를 요청하는 경우', async () => {
+      const res = await request(app.getHttpServer()).del(
+        `${baseUrl}/2100000000`
+      );
+
+      expect(res.body.data).toStrictEqual(
+        ERROR_MESSAGE.FAIL_TO_DELETE_ANSWER_QUESTIONNAIRE
+      );
     });
   });
 });

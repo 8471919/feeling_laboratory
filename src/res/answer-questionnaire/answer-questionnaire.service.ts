@@ -1,4 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { CreateAnswerQuestionnaireDto } from 'src/dtos/answer-questionnaire/create-answer-questionnaire.dto';
+import { FindAnswerQuestionnaireDto } from 'src/dtos/answer-questionnaire/find-answer-questionnaire.dto';
 import {
   ANSWER_QUESTIONNAIRE_REPOSITORY_OUTBOUND_PORT,
   AnswerQuestionnaireRepositoryOutboundPort,
@@ -10,4 +12,15 @@ export class AnswerQuestionnaireService {
     @Inject(ANSWER_QUESTIONNAIRE_REPOSITORY_OUTBOUND_PORT)
     private readonly answerQuestionnaireRepository: AnswerQuestionnaireRepositoryOutboundPort
   ) {}
+
+  async createAnswerQustionnaire(
+    createAnswerQuestionnaireDto: CreateAnswerQuestionnaireDto
+  ): Promise<FindAnswerQuestionnaireDto> {
+    const answerQuestionnaire =
+      await this.answerQuestionnaireRepository.createAnswerQuestionnaire(
+        createAnswerQuestionnaireDto
+      );
+
+    return answerQuestionnaire;
+  }
 }

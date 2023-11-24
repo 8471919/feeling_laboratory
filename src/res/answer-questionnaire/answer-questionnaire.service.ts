@@ -23,4 +23,15 @@ export class AnswerQuestionnaireService {
 
     return answerQuestionnaire;
   }
+
+  async getAnswerQuestionList(
+    questionnaireId: number
+  ): Promise<FindAnswerQuestionnaireDto[]> {
+    const answerQuestionList =
+      await this.answerQuestionnaireRepository.findAnswerQuestionnaireList({
+        questionnaireId,
+      });
+
+    return answerQuestionList;
+  }
 }

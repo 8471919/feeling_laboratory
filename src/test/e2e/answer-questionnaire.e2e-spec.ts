@@ -94,7 +94,13 @@ describe('e2e AnswerQuestionnaire Test', () => {
   });
 
   describe('GET /api/answer-questionnaire', () => {
-    test.todo('답변 설문지가 정상적으로 읽어지는지 검증');
+    test('답변 설문지 목록이 정상적으로 읽어지는지 검증', async () => {
+      const res = await request(app.getHttpServer()).get(
+        `${baseUrl}/list?questionnaireId=${questionnaireId}`
+      );
+
+      expect(res.body.data.length).toBeGreaterThan(0);
+    });
   });
 
   describe('PUT /api/answer-questionnaire', () => {

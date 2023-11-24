@@ -123,6 +123,16 @@ describe('e2e AnswerQuestionnaire Test', () => {
 
       expect(res.body.data).toHaveProperty('questionnaireId');
     });
+
+    test('존재하지 않는 답변 설문지에 대해 읽기 요청을 하는 경우', async () => {
+      const res = await request(app.getHttpServer()).get(
+        `${baseUrl}/2100000000`
+      );
+
+      expect(res.body.data).toStrictEqual(
+        ERROR_MESSAGE.FAIL_TO_FIND_ANSWER_QUESTIONNAIRE
+      );
+    });
   });
 
   describe('PUT /api/answer-questionnaire', () => {

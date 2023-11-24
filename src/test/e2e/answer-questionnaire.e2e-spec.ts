@@ -16,6 +16,7 @@ describe('e2e AnswerQuestionnaire Test', () => {
   let questionnaireId;
   let questionId;
   let questionOptionId;
+  let answerQuestionnaireId;
 
   beforeAll(async () => {
     testingModule = await Test.createTestingModule({
@@ -87,6 +88,8 @@ describe('e2e AnswerQuestionnaire Test', () => {
         .post(baseUrl)
         .send(answerQuestionInfo);
 
+      answerQuestionnaireId = res.body?.data?.id;
+
       expect(res.body.data.questionnaireId).toStrictEqual(
         answerQuestionInfo.questionnaireId
       );
@@ -100,6 +103,16 @@ describe('e2e AnswerQuestionnaire Test', () => {
       );
 
       expect(res.body.data.length).toBeGreaterThan(0);
+    });
+
+    test('답변 설문지가 정상적으로 읽어지는지 검증', async () => {
+      const res = await request(app.getHttpServer()).get(
+        `${baseUrl}/${answerQuestionnaireId}`
+      );
+
+      console.log(res.body.data);
+
+      expect(res.body.data).toHaveProperty('questionnaireId');
     });
   });
 

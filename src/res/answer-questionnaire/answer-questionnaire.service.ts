@@ -45,4 +45,15 @@ export class AnswerQuestionnaireService {
 
     return answerQuestionnaire;
   }
+
+  async removeAnswerQuestionnaire(
+    answerQuestionnaireId: number
+  ): Promise<boolean> {
+    const isDeleted =
+      await this.answerQuestionnaireRepository.deleteAnswerQuestionnaire(
+        answerQuestionnaireId
+      );
+
+    return isDeleted;
+  }
 }

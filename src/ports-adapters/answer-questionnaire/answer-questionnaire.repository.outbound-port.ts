@@ -17,4 +17,6 @@ export interface AnswerQuestionnaireRepositoryOutboundPort {
   findAnswerQuestionnaire(
     answerQuestionnaireId: number
   ): Promise<FindAnswerQuestionnaireDto>;
+
+  deleteAnswerQuestionnaire(answerQuestionnaireId: number): Promise<boolean>;
 }

@@ -71,4 +71,28 @@ export class AnswerQuestionnaireRepository
 
     return answerQuestionnaire;
   }
+
+  async deleteAnswerQuestionnaire(
+    answerQuestionnaireId: number
+  ): Promise<boolean> {
+    const answerQuestionnaire =
+      await this.answerQuestionnaireRepository.findOne({
+        where: {
+          id: answerQuestionnaireId,
+        },
+        relations: {
+          answerQuestions: true,
+        },
+      });
+
+    if (!answerQuestionnaire) {
+      throw new BadRequestException(
+        ERROR_MESSAGE.FAIL_TO_DELETE_ANSWER_QUESTIONNAIRE
+      );
+    }
+
+    await this.answerQuestionnaireRepository.softRemove(answerQuestionnaire);
+
+    return true;
+  }
 }

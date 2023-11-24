@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
@@ -49,5 +50,17 @@ export class AnswerQuestionnaireController {
       );
 
     return answerQuestionnaire;
+  }
+
+  @Delete('/:id')
+  async removeAnswerQuestionnaire(
+    @Param('id', new ParseIntPipe()) answerQuestionnaireId: number
+  ): Promise<boolean> {
+    const isDeleted =
+      await this.answerQuestionnaireService.removeAnswerQuestionnaire(
+        answerQuestionnaireId
+      );
+
+    return isDeleted;
   }
 }

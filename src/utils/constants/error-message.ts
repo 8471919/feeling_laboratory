@@ -40,4 +40,8 @@ export const ERROR_MESSAGE = {
     message:
       '설문지 답변 목록을 불러올 수 없습니다. 잘못된 값을 입력하셨습니다.',
   },
+  FAIL_TO_FIND_ANSWER_QUESTIONNAIRE: {
+    code: 400,
+    message: '설문지 답변을 불러올 수 없습니다. 잘못된 값을 입력하셨습니다.',
+  },
 };

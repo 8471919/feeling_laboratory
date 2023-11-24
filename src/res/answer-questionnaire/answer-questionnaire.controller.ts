@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   ParseIntPipe,
   Post,
   Query,
@@ -36,5 +37,17 @@ export class AnswerQuestionnaireController {
       );
 
     return answerQuestionnaireList;
+  }
+
+  @Get('/:id')
+  async getAnswerQuestionnaire(
+    @Param('id', new ParseIntPipe()) answerQuestionnaireId: number
+  ): Promise<FindAnswerQuestionnaireDto> {
+    const answerQuestionnaire =
+      await this.answerQuestionnaireService.getAnswerQuestion(
+        answerQuestionnaireId
+      );
+
+    return answerQuestionnaire;
   }
 }

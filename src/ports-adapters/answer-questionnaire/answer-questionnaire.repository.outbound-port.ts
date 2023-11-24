@@ -13,4 +13,8 @@ export interface AnswerQuestionnaireRepositoryOutboundPort {
   findAnswerQuestionnaireList(
     options: FindAnswerQuestionnaireOptionDto
   ): Promise<FindAnswerQuestionnaireDto[]>;
+
+  findAnswerQuestionnaire(
+    answerQuestionnaireId: number
+  ): Promise<FindAnswerQuestionnaireDto>;
 }

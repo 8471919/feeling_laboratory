@@ -45,4 +45,30 @@ export class AnswerQuestionnaireRepository
 
     return answerQuestionnaireList;
   }
+
+  async findAnswerQuestionnaire(
+    answerQuestionnaireId: number
+  ): Promise<FindAnswerQuestionnaireDto> {
+    const answerQuestionnaire =
+      await this.answerQuestionnaireRepository.findOne({
+        where: {
+          id: answerQuestionnaireId,
+        },
+        relations: {
+          questionnaire: true,
+          answerQuestions: {
+            question: true,
+            questionOption: true,
+          },
+        },
+      });
+
+    if (!answerQuestionnaire) {
+      throw new BadRequestException(
+        ERROR_MESSAGE.FAIL_TO_FIND_ANSWER_QUESTIONNAIRE
+      );
+    }
+
+    return answerQuestionnaire;
+  }
 }

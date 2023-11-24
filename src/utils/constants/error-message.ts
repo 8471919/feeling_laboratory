@@ -35,7 +35,7 @@ export const ERROR_MESSAGE = {
     code: 400,
     message: '선택지를 삭제할 수 없습니다. 잘못된 값을 입력하셨습니다.',
   },
-  FAIL_TO_FOUND_ANSWER_QUESTIONNAIRE_LIST: {
+  FAIL_TO_FIND_ANSWER_QUESTIONNAIRE_LIST: {
     code: 400,
     message:
       '설문지 답변 목록을 불러올 수 없습니다. 잘못된 값을 입력하셨습니다.',

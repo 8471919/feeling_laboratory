@@ -39,7 +39,7 @@ export class AnswerQuestionnaireRepository
 
     if (answerQuestionnaireList.length === 0) {
       throw new BadRequestException(
-        ERROR_MESSAGE.FAIL_TO_FOUND_ANSWER_QUESTIONNAIRE_LIST
+        ERROR_MESSAGE.FAIL_TO_FIND_ANSWER_QUESTIONNAIRE_LIST
       );
     }
 

@@ -106,6 +106,16 @@ describe('e2e AnswerQuestionnaire Test', () => {
       expect(res.body.data.length).toBeGreaterThan(0);
     });
 
+    test('존재하지 않는 설문지에 대해 읽기 요청을 하는 경우', async () => {
+      const res = await request(app.getHttpServer()).get(
+        `${baseUrl}/list?questionnaireId=2100000000`
+      );
+
+      expect(res.body.data).toStrictEqual(
+        ERROR_MESSAGE.FAIL_TO_FIND_ANSWER_QUESTIONNAIRE_LIST
+      );
+    });
+
     test('답변 설문지가 정상적으로 읽어지는지 검증', async () => {
       const res = await request(app.getHttpServer()).get(
         `${baseUrl}/${answerQuestionnaireId}`

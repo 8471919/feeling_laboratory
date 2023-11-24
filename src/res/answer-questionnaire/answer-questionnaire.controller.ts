@@ -32,7 +32,7 @@ export class AnswerQuestionnaireController {
     @Query('questionnaireId', new ParseIntPipe()) questionnaireId: number
   ): Promise<FindAnswerQuestionnaireDto[]> {
     const answerQuestionnaireList =
-      await this.answerQuestionnaireService.getAnswerQuestionList(
+      await this.answerQuestionnaireService.getAnswerQuestionnaireList(
         questionnaireId
       );
 
@@ -44,7 +44,7 @@ export class AnswerQuestionnaireController {
     @Param('id', new ParseIntPipe()) answerQuestionnaireId: number
   ): Promise<FindAnswerQuestionnaireDto> {
     const answerQuestionnaire =
-      await this.answerQuestionnaireService.getAnswerQuestion(
+      await this.answerQuestionnaireService.getAnswerQuestionnaire(
         answerQuestionnaireId
       );
 

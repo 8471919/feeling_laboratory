@@ -24,7 +24,7 @@ export class AnswerQuestionnaireService {
     return answerQuestionnaire;
   }
 
-  async getAnswerQuestionList(
+  async getAnswerQuestionnaireList(
     questionnaireId: number
   ): Promise<FindAnswerQuestionnaireDto[]> {
     const answerQuestionList =
@@ -35,7 +35,7 @@ export class AnswerQuestionnaireService {
     return answerQuestionList;
   }
 
-  async getAnswerQuestion(
+  async getAnswerQuestionnaire(
     answerQuestionnaireId: number
   ): Promise<FindAnswerQuestionnaireDto> {
     const answerQuestionnaire =

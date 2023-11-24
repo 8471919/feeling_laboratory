@@ -69,6 +69,8 @@ describe('e2e AnswerQuestionnaire Test', () => {
     const questionOption = await request(app.getHttpServer())
       .post('/api/question-option')
       .send(questionOptionInfo);
+
+    questionOptionId = questionOption.body?.data?.id;
   });
 
   afterAll(async () => {
@@ -78,7 +80,7 @@ describe('e2e AnswerQuestionnaire Test', () => {
   describe('POST /api/answer-questionnaire', () => {
     test('답변 설문지가 정상적으로 생성되는지 검증', async () => {
       const answerQuestionInfo: CreateAnswerQuestionnaireDto = {
-        questionnaireId: 1,
+        questionnaireId,
       };
 
       const res = await request(app.getHttpServer())

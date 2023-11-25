@@ -9,24 +9,45 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('Questionnaire')
 export class QuestionnaireEntity extends CommonIntPKEntity {
+  @ApiProperty({
+    example: 'Manager',
+    description: '작성자',
+    required: true,
+  })
   @IsString()
   @IsNotEmpty()
   @Column('varchar', { length: 100, unique: false, nullable: false })
   author: string;
 
+  @ApiProperty({
+    example: '여행 만족도 조사',
+    description: '설문지 제목',
+    required: true,
+  })
   @IsString()
   @IsNotEmpty()
   @Column('varchar', { length: 100, unique: false, nullable: false })
   title: string;
 
+  @ApiProperty({
+    example: '본 설문은 여행에 관한 설문입니다.',
+    description: '설문지 설명',
+    required: false,
+  })
   @IsString()
   @IsOptional()
   @Column('text', { unique: false, nullable: true })
   description: string | null;
 
+  @ApiProperty({
+    example: new Date().toISOString(),
+    description: '설문 시작 날짜',
+    required: true,
+  })
   @IsDateString()
   @Column('timestamp', {
     unique: false,
@@ -35,6 +56,11 @@ export class QuestionnaireEntity extends CommonIntPKEntity {
   })
   startedAt: Date;
 
+  @ApiProperty({
+    example: new Date().toISOString(),
+    description: '설문 종료 날짜',
+    required: false,
+  })
   @IsDateString()
   @IsOptional()
   @Column('timestamp', { unique: false, nullable: true })

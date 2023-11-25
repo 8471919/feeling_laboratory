@@ -38,6 +38,11 @@ export class QuestionnaireRepository
       where: {
         ...options,
       },
+      relations: {
+        questions: {
+          questionOptions: true,
+        },
+      },
     });
 
     if (questionnaireList.length === 0) {

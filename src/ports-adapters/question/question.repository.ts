@@ -34,6 +34,9 @@ export class QuestionRepository implements QuestionRepositoryOutboundPort {
       where: {
         ...options,
       },
+      relations: {
+        questionOptions: true,
+      },
     });
 
     if (questionList.length === 0) {

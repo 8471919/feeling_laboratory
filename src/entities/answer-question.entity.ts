@@ -4,6 +4,7 @@ import { AnswerQuestionnaireEntity } from './answer-questionnaire.entity';
 import { QuestionEntity } from './question.entity';
 import { QuestionOptionEntity } from './question-option.entity';
 import { IsInt } from 'class-validator';
+import { Type } from 'class-transformer';
 
 @Entity('AnswerQuestion')
 export class AnswerQuestionEntity extends CommonBigIntPKEntity {
@@ -15,9 +16,11 @@ export class AnswerQuestionEntity extends CommonBigIntPKEntity {
   @Column('int', { unique: false, nullable: false })
   questionId: number;
 
+  @Type(() => Number)
   @IsInt()
-  @Column('int', { unique: false, nullable: false })
-  questionOptionId: number;
+  @Type(() => String)
+  @Column('bigint', { unique: false, nullable: false })
+  questionOptionId: string;
 
   @ManyToOne(
     () => AnswerQuestionnaireEntity,

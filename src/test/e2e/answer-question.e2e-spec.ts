@@ -7,6 +7,7 @@ import { CreateAnswerQuestionnaireDto } from 'src/dtos/answer-questionnaire/crea
 import { CreateQuestionOptionEntityDto } from 'src/dtos/question-option/create-question-option.dto';
 import { CreateQuestionDto } from 'src/dtos/question/create-question.dto';
 import { CreateQuestionnaireDto } from 'src/dtos/questionnaire/create-questionnaire.dto';
+import { ERROR_MESSAGE } from 'src/utils/constants/error-message';
 import * as request from 'supertest';
 
 describe('e2e AnswerQuestion Test', () => {
@@ -127,6 +128,20 @@ describe('e2e AnswerQuestion Test', () => {
         .send(answerQuestionInfo);
 
       expect(res.body.data).toBe(true);
+    });
+
+    test('존재하지 않는 설문 답변 문항에 대한 검증', async () => {
+      const answerQuestionInfo: UpdateAnswerQuestionDto = {
+        questionOptionId,
+      };
+
+      const res = await request(app.getHttpServer())
+        .put(`${baseUrl}/2100000000`)
+        .send(answerQuestionInfo);
+
+      expect(res.body.data).toStrictEqual(
+        ERROR_MESSAGE.FAIL_TO_UPDATE_ANSWER_QUESTION
+      );
     });
   });
 

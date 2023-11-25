@@ -7,10 +7,6 @@ import { IsInt } from 'class-validator';
 @Entity('AnswerQuestionnaire')
 export class AnswerQuestionnaireEntity extends CommonIntPKEntity {
   @IsInt()
-  @Column('int', { unique: false, nullable: false, default: 0 })
-  totalScore: number;
-
-  @IsInt()
   @Column('int', { unique: false, nullable: false })
   questionnaireId: number;
 

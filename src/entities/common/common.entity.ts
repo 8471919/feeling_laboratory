@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import { IsDateString, IsInt, IsOptional } from 'class-validator';
 import {
   CreateDateColumn,
@@ -26,7 +27,9 @@ export class CommonIntPKEntity {
 }
 
 export class CommonBigIntPKEntity {
+  @Type(() => Number)
   @IsInt()
+  @Type(() => String)
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id: string;
 

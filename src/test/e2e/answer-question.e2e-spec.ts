@@ -2,6 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from 'src/app.module';
 import { CreateAnswerQuestionDto } from 'src/dtos/answer-question/create-answer-question.dto';
+import { UpdateAnswerQuestionDto } from 'src/dtos/answer-question/update-answer-question.dto';
 import { CreateAnswerQuestionnaireDto } from 'src/dtos/answer-questionnaire/create-answer-questionnaire.dto';
 import { CreateQuestionOptionEntityDto } from 'src/dtos/question-option/create-question-option.dto';
 import { CreateQuestionDto } from 'src/dtos/question/create-question.dto';
@@ -103,6 +104,8 @@ describe('e2e AnswerQuestion Test', () => {
         .post(baseUrl)
         .send(answerQuestionInfo);
 
+      answerQuestionId = res.body?.data?.id;
+
       expect(res.body.data.answerQuestionnaireId).toStrictEqual(
         answerQuestionInfo.answerQuestionnaireId
       );
@@ -114,7 +117,17 @@ describe('e2e AnswerQuestion Test', () => {
   });
 
   describe('PUT /api/answer-question', () => {
-    test.todo('설문 답변 문항이 정상적으로 수정되는지 검증');
+    test('설문 답변 문항이 정상적으로 수정되는지 검증', async () => {
+      const answerQuestionInfo: UpdateAnswerQuestionDto = {
+        questionOptionId,
+      };
+
+      const res = await request(app.getHttpServer())
+        .put(`${baseUrl}/${answerQuestionId}`)
+        .send(answerQuestionInfo);
+
+      expect(res.body.data).toBe(true);
+    });
   });
 
   describe('DELETE /api/answer-question', () => {

@@ -16,7 +16,7 @@ import { QuestionnaireModule } from './res/questionnaire/questionnaire.module';
 import { QuestionModule } from './res/question/question.module';
 import { QuestionOptionModule } from './res/\bquestion-option/question-option.module';
 import { AnswerQuestionnaireModule } from './res/answer-questionnaire/answer-questionnaire.module';
-// import { UserModule } from './res/user/user.module';
+import { AnswerQuestionModule } from './res/answer-question/answer-question.module';
 
 @Module({
   imports: [
@@ -46,6 +46,7 @@ import { AnswerQuestionnaireModule } from './res/answer-questionnaire/answer-que
     QuestionModule,
     QuestionOptionModule,
     AnswerQuestionnaireModule,
+    AnswerQuestionModule,
   ],
   controllers: [],
   providers: [

@@ -5,7 +5,7 @@
 ![DB ERD](image.png)
 
 - 링크
-<iframe width="600" height="336" src="https://www.erdcloud.com/p/CtuA9BphnfQsz8FAi" frameborder="0" allowfullscreen></iframe>
+https://www.erdcloud.com/p/CtuA9BphnfQsz8FAi
 
 ## 설명
 

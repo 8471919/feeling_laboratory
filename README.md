@@ -10,6 +10,7 @@
 ## 설명
 
 - 도커를 사용하여 실행하는 방법을 소개합니다.
+  - Postgresql 설정도 다 해두었으니, api만 실행시키시면 됩니다.
 - `/api-docs` 경로에 Swagger를 작성해두었습니다. 테스트 시, 스웨거를 이용하시면 됩니다.
 - 간단한 e2e Test를 작성해두었습니다. 명령어는 `npm run test:e2e` 입니다. 하지만, 이 경우 따로 로컬에서 `.env` 파일을 설정해야합니다.
 
@@ -20,7 +21,7 @@
 
   # DB 관련 설정
   DB_HOST=localhost
-  DB_PORT=5432 (본인의 postgrew 포트번호)
+  DB_PORT=5432 (본인의 postgresql 포트번호)
   DB_USERNAME=본인의 username
   DB_PASSWORD=본인의 비밀번호
   DB_DATABASE=새로 생성한 DB
@@ -148,6 +149,7 @@ TZ=Asia/Seoul
 
 3. docker compose를 이용하여 실행시킵니다.
 
+- Postgresql 설정은 이미 다 되어있습니다. api만 실행시키면 됩니다.
 - 이 때, 도커 버전에 따라 실행 명령이 상이할 수 있습니다.
 
 ```bash

@@ -5,7 +5,7 @@
 ![DB ERD](image.png)
 
 - 링크
-https://www.erdcloud.com/p/CtuA9BphnfQsz8FAi
+  https://www.erdcloud.com/p/CtuA9BphnfQsz8FAi
 
 ## 설명
 
@@ -13,7 +13,7 @@ https://www.erdcloud.com/p/CtuA9BphnfQsz8FAi
 - `/api-docs` 경로에 Swagger를 작성해두었습니다. 테스트 시, 스웨거를 이용하시면 됩니다.
 - 간단한 e2e Test를 작성해두었습니다. 명령어는 `npm run test:e2e` 입니다.
 
-### 유의사항
+### 유의사항 및 구현사항
 
 - 유저 테이블은 따로 만들지 않았습니다.
 - 로그인을 따로 구현하지 않았습니다. 작성자 명으로만 설문을 구분합니다.
@@ -22,6 +22,27 @@ https://www.erdcloud.com/p/CtuA9BphnfQsz8FAi
 - 설문지 완료의 경우 컴포넌트(설문 답변) 하나하나 마다 생성하게 하였으므로, 설문지 완료 버튼을 클릭하면 따로 완료 설문지 api로 Redirect시키면 됩니다.
 - 완료된 설문지 확인의 경우 `GET /api/answer-questionnaire/{id}` 를 통해 읽어올 수 있도록 하였습니다.
 - 답변 설문지의 경우 따로 볼 수 있게 하지 않았습니다. 사용자가 화면을 벗어날 시, 임시저장을 위해 불러올 수 있도록 id값을 암호화하여 쿠키에 넣어줄 때 사용하는 용도로만 만들어두었습니다.
+- 답변 총점의 경우, 연산이 필요하기 때문에 프론트에서 점수를 합연산하여 클라이언트 개엔이 부담하도록 하는게 좋다고 판단하였습니다.
+- 에러 처리의 경우 HttpExceptionFilter를 두어, 일관된 에러를 뱉도록 하였습니다.
+
+```typescript
+// ex
+{
+  success: false,
+  code: statusCode,
+  timestamp: new Date().toISOString(),
+  path: request.url,
+  message,
+  // data의 code와 message는 개발자가 직접 던지는 statusCode와 message입니다.
+  data: {
+    code,
+    message
+  }
+}
+
+```
+
+- 로그를 위해 LogMiddleware를 모든 경로에 적용하였습니다. 또한, HttpExceptionFilter에 로거를 추가하여 에러 발생시 로그를 추가적으로 출력하도록 하였습니다.
 
 ### 기능
 

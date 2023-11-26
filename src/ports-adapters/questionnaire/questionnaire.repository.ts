@@ -43,6 +43,14 @@ export class QuestionnaireRepository
           questionOptions: true,
         },
       },
+      order: {
+        questions: {
+          order: 'ASC',
+          questionOptions: {
+            order: 'ASC',
+          },
+        },
+      },
     });
 
     if (questionnaireList.length === 0) {

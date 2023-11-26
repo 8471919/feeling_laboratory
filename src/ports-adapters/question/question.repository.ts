@@ -37,6 +37,11 @@ export class QuestionRepository implements QuestionRepositoryOutboundPort {
       relations: {
         questionOptions: true,
       },
+      order: {
+        questionOptions: {
+          order: 'ASC',
+        },
+      },
     });
 
     if (questionList.length === 0) {

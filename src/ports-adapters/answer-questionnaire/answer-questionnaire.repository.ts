@@ -55,10 +55,24 @@ export class AnswerQuestionnaireRepository
           id: answerQuestionnaireId,
         },
         relations: {
-          questionnaire: true,
+          questionnaire: {
+            questions: {
+              questionOptions: true,
+            },
+          },
           answerQuestions: {
             question: true,
             questionOption: true,
+          },
+        },
+        order: {
+          questionnaire: {
+            questions: {
+              order: 'ASC',
+              questionOptions: {
+                order: 'ASC',
+              },
+            },
           },
         },
       });

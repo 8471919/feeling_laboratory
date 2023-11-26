@@ -11,7 +11,23 @@
 
 - 도커를 사용하여 실행하는 방법을 소개합니다.
 - `/api-docs` 경로에 Swagger를 작성해두었습니다. 테스트 시, 스웨거를 이용하시면 됩니다.
-- 간단한 e2e Test를 작성해두었습니다. 명령어는 `npm run test:e2e` 입니다.
+- 간단한 e2e Test를 작성해두었습니다. 명령어는 `npm run test:e2e` 입니다. 하지만, 이 경우 따로 로컬에서 `.env` 파일을 설정해야합니다.
+
+  - 아래와 같이 env 파일을 작성합니다.
+
+  ```
+  NEST_PORT=4000
+
+  # DB 관련 설정
+  DB_HOST=localhost
+  DB_PORT=5432 (본인의 postgrew 포트번호)
+  DB_USERNAME=본인의 username
+  DB_PASSWORD=본인의 비밀번호
+  DB_DATABASE=새로 생성한 DB
+  ```
+
+  - `.env`파일 작성 후, `npm run schema:sync` 를 통하여 DB를 동기화합니다.
+  - 그 후, `npm run test:e2e` 명령을 통해 e2e테스트를 진행할 수 있습니다.
 
 ### 유의사항 및 구현사항
 
